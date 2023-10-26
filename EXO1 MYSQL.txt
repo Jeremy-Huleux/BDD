@@ -1,0 +1,38 @@
+CREATE TABLE livre(
+	numLivre INT AUTO_INCREMENT,
+    titre VARCHAR(99),
+    nombrePages INT,
+    anneeImpression INT,
+    PRIMARY KEY (numLivre)
+);
+CREATE TABLE auteur(
+    numAut INT AUTO_INCREMENT,
+    nom VARCHAR(99),
+    prenom VARCHAR(99),
+    PRIMARY KEY (numAut),
+    FOREIGN KEY (numAut) REFERENCES ecrit(numAut) 
+);
+CREATE TABLE ecrit(
+	numL INT,
+    numAut INT,
+    PRIMARY KEY(numAut, numL),
+    FOREIGN KEY(numAut) REFERENCES auteur(numAut),
+    FOREIGN KEY(numL) REFERENCES livre(numLivre)
+);
+CREATE TABLE editeur(
+	numE INT AUTO_INCREMENT,
+    nom VARCHAR(99),
+    ville VARCHAR(99),
+    PRIMARY KEY (numE),
+    FOREIGN KEY (numE) REFERENCES edite(numE)
+);
+CREATE TABLE edite(
+	numL INT,
+    numE INT,
+    PRIMARY KEY (numL, numE),
+    FOREIGN KEY (numL) REFERENCES livre(numL),
+    FOREIGN KEY (numE) REFERENCES editeur(numE)
+);
+    
+    
+    
