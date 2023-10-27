@@ -1,0 +1,52 @@
+1.
+USE BD;
+SELECT nom FROM auteur;
+___________________
+2.
+USE BD;
+SELECT nom FROM auteur
+WHERE prenom='Albert';
+____________________
+3.
+USE BD;
+SELECT titre FROM livre
+ORDER BY titre ASC;
+____________________
+4.
+USE BD;
+SELECT numLivre FROM livre
+WHERE titre LIKE '%d%';
+____________________
+5.
+USE BD;
+SELECT titre FROM livre
+WHERE anneeImpression = 2003 OR anneeImpression = 1976;
+____________________
+6.
+PREMIER : 
+	USE BD;
+	SELECT numLivre FROM livre
+	WHERE anneeImpression >= 2003 AND anneeImpression <= 2004;
+DEUXIEME : 
+	USE BD;
+	SELECT numLivre FROM livre
+	WHERE anneeImpression BETWEEN 2003 AND 2004;
+____________________
+Pour les besoins de cette exercice j'ai pris la decision d'ajouter deux livres 
+qui n'est pas dans la base de base, pour avoir un résultat. Les requetes 
+suivante on été utilisés :
+USE BD;
+INSERT INTO livre(titre, nombrePages, anneeImpression) VALUES 
+('Omnibus The Boys T01', 1088, 2003),
+('Omnibus Les Boys T02', 1328, 2003);
+
+7.
+USE BD;
+SELECT titre FROM livre
+WHERE anneeImpression = 2003 AND nombrePages > 500;
+____________________
+8.
+USE BD;
+SELECT titre FROM livre
+WHERE anneeImpression = 2003 AND nombrePages > 500 AND titre NOT LIKE 'L%';
+

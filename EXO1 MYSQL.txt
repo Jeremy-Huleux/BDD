@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS BD;
+USE BD;
+
+
 CREATE TABLE livre(
 	numLivre INT AUTO_INCREMENT,
     titre VARCHAR(99),
@@ -34,5 +38,34 @@ CREATE TABLE edite(
     FOREIGN KEY (numE) REFERENCES editeur(numE)
 );
     
-    
+INSERT INTO livre(titre, nombrePages, anneeImpression) VALUES 
+('La reine des pommes', 282, 2003),
+('Mangeclous', 498, 2004),
+('Belle du seigneur', 1110, 2002),
+('Couché dans le pain', 248, 2002),
+('Le Matrimoine', 286, 1976);
+
+INSERT INTO auteur(nom, prenom) VALUES 
+('Himes', 'Chester'),
+('Bazin', 'Hervé'),
+('Cohen', 'Albert');
+
+INSERT INTO ecrit VALUES 
+(0, 0),
+(1, 2),
+(2, 2),
+(3, 0),
+(4, 1);
+
+INSERT INTO editeur(nom, ville) VALUES 
+('Gallimard', 'Paris'),
+('Seuil', 'Lille');
+
+INSERT INTO edite VALUES 
+(0, 0),
+(1, 0),
+(2, 0),
+(3, 0),
+(4, 1);
+
     
