@@ -1,3 +1,5 @@
+EXERCICE 1
+
 1.
 USE BD;
 SELECT nom FROM auteur;
@@ -39,6 +41,8 @@ USE BD;
 INSERT INTO livre(titre, nombrePages, anneeImpression) VALUES 
 ('Omnibus The Boys T01', 1088, 2003),
 ('Omnibus Les Boys T02', 1328, 2003);
+INSERT INTO ecrit VALUES (6, 2), (7,1);
+INSERT INTO edite VALUES (6, 1), (7,1);
 
 7.
 USE BD;
@@ -49,4 +53,45 @@ ____________________
 USE BD;
 SELECT titre FROM livre
 WHERE anneeImpression = 2003 AND nombrePages > 500 AND titre NOT LIKE 'L%';
+
+EXERCICE 2
+ON CONSIDERE QU'A CHAQUE EXERCICES NOUS METTONS "USE BD;" AVANT CHAQUE REQUETE
+1.
+SELECT COUNT(numE) FROM editeur;
+____________________
+2.
+SELECT MIN(nombrePages) FROM livre;
+SELECT MAX(nombrePages) FROM livre;
+____________________
+3.
+SELECT COUNT(numL) FROM ecrit WHERE numAut = 2;
+____________________
+4.
+SELECT AVG(nombrePages) FROM livre;
+____________________
+5.
+SELECT COUNT(DISTINCT(anneeImpression)) FROM livre;
+
+
+EXERCICE 3
+
+1.
+SELECT numL FROM edite WHERE numE = 0;
+____________________
+2.
+SELECT numLivre FROM livre WHERE titre = 'Mangeclous';
+____________________
+3.
+SELECT numL FROM ecrit WHERE numAut = 2;
+____________________
+4.
+SELECT titre FROM livre WHERE numLivre = 2 AND numLivre = 1;
+____________________
+5.
+SELECT ecrit.numL FROM ecrit,edite WHERE ecrit.numL=edite.numL AND numE = 0 AND numAut != 2;
+____________________
+6.
+SELECT editeur.ville FROM livre,edite,editeur WHERE livre.numLivre=edite.numL AND edite.numE=editeur.numE AND nombrePages > 500;
+
+
 
