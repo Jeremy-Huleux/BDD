@@ -1,0 +1,23 @@
+TP3
+
+AVANT DE COMMENCER LE TP ON METS EN PLACES LES CHANGEMENTS DANS LA BASE, ON CONSIDERE QU'A CHAQUE REQUETE NOUS AJOUTONS "USE BD;"
+
+INSERT INTO auteur(nom, prenom) VALUES 
+('Cohen', 'Albert'),
+('Martin', 'Paul');
+
+INSERT INTO editeur(nom, ville) VALUES 
+('Nouvel Horizon', 'Toulouse');
+
+
+EXERCICE 1
+
+1.
+SELECT numLivre, titre FROM livre WHERE nombrePages >= (SELECT AVG(nombrePages) FROM livre);
+2.
+SELECT numLivre FROM livre l, ecrit e, auteur a WHERE l.numLivre = e.numL AND e.numAut = a.numAut AND prenom = 'Chester';
+3.
+SELECT numLivre FROM livre l, ecrit e, auteur a WHERE l.numLivre = e.numL AND e.numAut = a.numAut AND prenom = 'Chester';
+4.
+SELECT numE, nom FROM editeur WHERE numE NOT IN (SELECT DISTINCT(e.numE) FROM edite e);
+5.

@@ -50,22 +50,23 @@ INSERT INTO auteur(nom, prenom) VALUES
 ('Bazin', 'Hervé'),
 ('Cohen', 'Albert');
 
-INSERT INTO ecrit VALUES 
-(0, 0),
-(1, 2),
-(2, 2),
-(3, 0),
-(4, 1);
+INSERT INTO ecrit VALUES
+(1, 1),
+(2, 3),
+(3, 3),
+(4, 1),
+(5, 2)
+;
 
 INSERT INTO editeur(nom, ville) VALUES 
 ('Gallimard', 'Paris'),
 ('Seuil', 'Lille');
 
-INSERT INTO edite VALUES 
-(0, 0),
-(1, 0),
-(2, 0),
-(3, 0),
-(4, 1);
+INSERT INTO edite VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 2)
+;  
 
-    

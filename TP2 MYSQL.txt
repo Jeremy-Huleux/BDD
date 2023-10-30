@@ -1,0 +1,38 @@
+TP2
+
+ON ESTIME QUE l'ON UTILISE "USE BD;" POUR CHAQUE REQUETE
+
+EXERCICE 1
+1.
+SELECT COUNT( DISTINCT( titre)) FROM livre GROUP BY anneeImpression;
+2.
+SELECT MIN(nombrePages), MAX(nombrePages) FROM livre GROUP BY anneeImpression;
+3.
+SELECT AVG(nombrePages) FROM livre WHERE anneeImpression > 2000 GROUP BY anneeImpression;
+4.
+SELECT COUNT(numLivre) FROM livre l, ecrit e WHERE l.numLivre = e.numL GROUP BY numAut;
+5.
+SELECT COUNT(numE) FROM editeur GROUP BY ville;
+6.
+SELECT COUNT(numL) FROM edite e, livre l WHERE l.numLivre = e.numL GROUP BY e.numE;
+
+
+EXERCICE 2
+1.
+SELECT COUNT(numL) FROM ecrit e, livre l WHERE l.numLivre = e.numL AND numAut = 2 GROUP BY l.anneeImpression;
+2.
+SELECT COUNT(numL) FROM ecrit e, livre l, auteur a WHERE l.numLivre = e.numL AND e.numAut= a.numAut AND e.numAut = 2 GROUP BY l.anneeImpression;
+3.
+SELECT COUNT(numL) FROM ecrit e, livre l, auteur a WHERE l.numLivre = e.numL AND e.numAut= a.numAut AND a.nom = 'Himes' AND l.anneeImpression > 2000 GROUP BY l.anneeImpression;
+4.
+SELECT e.ville, COUNT(e1.numL) FROM editeur e JOIN edite e1 ON e.numE = e1.numE GROUP BY e.ville;
+
+
+EXERCICE 3
+1.
+SELECT numLivre FROM livre WHERE nombrePages > 300 AND anneeImpression < 2003;
+2.
+SELECT numLivre FROM livre WHERE nombrePages > 300 OR anneeImpression < 2003;
+3.
+SELECT numLivre FROM livre WHERE nombrePages > 300 NOT LIKE anneeImpression < 2003;
+
