@@ -25,3 +25,11 @@ SELECT numAut, nom FROM auteur WHERE numAut NOT IN (SELECT DISTINCT(e.numAut) FR
 6.
 SELECT numLivre, titre FROM livre l, edite e WHERE l.numLivre = e.numL AND e.numE = 0 AND l.numLivre IN (SELECT numL FROM ecrit WHERE numAut != 4);
 7.
+USE BD;
+SELECT numAut FROM ecrit
+GROUP BY numAut 
+HAVING COUNT(numL) = 
+	(SELECT MAX(test) FROM
+		(SELECT e.numL, COUNT(*) AS test FROM ecrit e
+		GROUP BY e.numAut) 
+     	AS tab);
