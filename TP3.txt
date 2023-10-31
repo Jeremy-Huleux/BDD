@@ -25,7 +25,6 @@ SELECT numAut, nom FROM auteur WHERE numAut NOT IN (SELECT DISTINCT(e.numAut) FR
 6.
 SELECT numLivre, titre FROM livre l, edite e WHERE l.numLivre = e.numL AND e.numE = 0 AND l.numLivre IN (SELECT numL FROM ecrit WHERE numAut != 4);
 7.
-USE BD;
 SELECT numAut FROM ecrit
 GROUP BY numAut 
 HAVING COUNT(numL) = 
@@ -33,3 +32,19 @@ HAVING COUNT(numL) =
 		(SELECT e.numL, COUNT(*) AS test FROM ecrit e
 		GROUP BY e.numAut) 
      	AS tab);
+
+EXERCICE 2
+
+1.
+SELECT e.numAut FROM ecrit e, livre l
+WHERE l.numLivre = e.numL AND l.anneeImpression = 2003
+GROUP BY e.numAut
+HAVING e.numAut NOT IN (SELECT e.numAut FROM ecrit e, auteur a 
+                        WHERE e.numAut = a.numAut);
+2.
+SELECT l.numLivre, l.titre, e2.numAut FROM livre l, editeur e, edite e1, ecrit e2
+WHERE l.numLivre = e1.numL AND e1.numE = e.numE AND e.nom = 'Gallimard' AND e2.numL = l.numLivre
+GROUP BY l.numLivre
+HAVING e2.numAut IN (SELECT numAut FROM auteur 
+                     WHERE nom != 'Himes' AND prenom != 'Chester');
+

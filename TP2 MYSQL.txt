@@ -25,7 +25,7 @@ SELECT COUNT(numL) FROM ecrit e, livre l, auteur a WHERE l.numLivre = e.numL AND
 3.
 SELECT COUNT(numL) FROM ecrit e, livre l, auteur a WHERE l.numLivre = e.numL AND e.numAut= a.numAut AND a.nom = 'Himes' AND l.anneeImpression > 2000 GROUP BY l.anneeImpression;
 4.
-SELECT e.ville, COUNT(e1.numL) FROM editeur e JOIN edite e1 ON e.numE = e1.numE GROUP BY e.ville;
+SELECT e.ville,e1.numE ,COUNT(e1.numL) FROM editeur e JOIN edite e1 ON e.numE = e1.numE GROUP BY e.ville, e1.numE;
 
 
 EXERCICE 3
