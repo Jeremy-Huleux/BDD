@@ -1,0 +1,13 @@
+EXERCICE 1
+
+1.
+SELECT nom, prenom FROM personne ORDER BY nom ASC;
+2.
+SELECT nom, prenom, naissance FROM personne ORDER BY naissance ASC;
+3.
+SELECT f.titre FROM film f, genre g WHERE f.idGenre = g.id AND g.type = 'thriller';
+4.
+Les différents types de films du réalisateur Martin Scorcesse
+GENRE FILM REALISATEUR
+
+SELECT g.type FROM genre g, film f WHERE g.id = f.idGenre GROUP BY g.type, g.id HAVING g.id = (SELECT f.idGenre FROM film f WHERE f.idRealisateur = (SELECT r.idRealisateur FROM realisateur r WHERE r.nomR = 'Scorcesse' AND r.prenomR = 'Martin'));
