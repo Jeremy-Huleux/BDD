@@ -1,5 +1,5 @@
 EXERCICE 1
-
+ON CONSIDER QUE "USE FILM;" EST UTILISE AVANT CHAQUE REQUETE
 1.
 SELECT nom, prenom FROM personne ORDER BY nom ASC;
 2.
@@ -7,7 +7,63 @@ SELECT nom, prenom, naissance FROM personne ORDER BY naissance ASC;
 3.
 SELECT f.titre FROM film f, genre g WHERE f.idGenre = g.id AND g.type = 'thriller';
 4.
-Les différents types de films du réalisateur Martin Scorcesse
-GENRE FILM REALISATEUR
+SELECT g.type FROM genre g, film f WHERE g.id = f.idGenre GROUP BY g.type, g.id HAVING g.id = (SELECT f.idGenre FROM film f WHERE f.idRealisateur = (SELECT r.idRealisateur FROM realisateur r WHERE r.nomR = 'Martin' AND r.prenomR = 'Scorcesse'));
+5.
+SELECT nom, prenom FROM personne
+GROUP BY nom, id 
+HAVING id IN (SELECT idActeur FROM joue
+             WHERE idFilm = (SELECT id FROM film
+                             WHERE titre = 'Le convoyeur'));
+6.
+SELECT nom, prenom FROM personne
+GROUP BY nom, id 
+HAVING id IN (SELECT idActeur FROM joue
+              WHERE idFilm = (SELECT id FROM film
+                             WHERE idGenre = (SELECT id FROM genre
+                                              WHERE type ='comédie')))
+;
+7.
+SELECT nom, prenom FROM personne
+GROUP BY nom, id 
+HAVING id IN (SELECT f.id FROM film f, genre g 
+              WHERE f.idGenre = g.id AND g.id = (SELECT id FROM genre
+                                                WHERE type = 'comédie'))
+;
+8.
+SELECT p.nom, p.prenom, p.id FROM personne p
+GROUP BY p.nom 
+HAVING p.id IN (SELECT j.idActeur FROM joue j);
+9.
+SELECT f.titre, f.id, f.nbSpectateurs FROM film f
+GROUP BY f.titre
+HAVING f.nbSpectateurs = 1000000 AND f.id = (SELECT j.idFilm FROM joue j, personne p
+                WHERE j.idActeur = p.id AND p.prenom = 'Max' AND p.nom = 'Pecas');
+10.
+SELECT f.titre, f.nbSpectateurs FROM film f
+GROUP BY f.titre
+HAVING f.nbSpectateurs < 100000;
+11.
+SELECT f.titre, f.id FROM film f
+WHERE f.id = (SELECT j.idActeur FROM personne p, joue j
+              WHERE j.idActeur = p.id AND p.nom = 'Cotillard' AND p.prenom = 'Marion')
+AND f.id = (SELECT r.idRealisateur  FROM realisateur r
+            WHERE r.nomR = 'Guillaume' AND r.prenomR = 'Canet');
+12.
+SELECT f.titre, f.id FROM film f
+GROUP BY f.titre
+HAVING 	f.id IN (SELECT idRealisateur FROM realisateur)
+AND
+		f.id IN (SELECT p.id FROM joue j, personne p
+                 WHERE j.idActeur = p.id);
+13.
+SELECT f.annee, f.titre, f.id FROM film f
+GROUP BY f.annee
+HAVING f.id IN (SELECT p.id FROM joue j, personne p
+                 WHERE j.idActeur = p.id AND p.prenom = 'Jean' AND p.nom = 'Dujardin');
+14.
+SELECT j.salaire FROM joue j, personne p WHERE j.idActeur = p.id AND p.prenom = 'Jean' AND p.nom = 'Dujardin' ORDER BY j.salaire;
+15.
+SELECT p.prenom, p.nom, p2.prenom, p2.nom FROM personne p, personne p2
+WHERE p.nom = p2.nom AND p.prenom != p2.prenom
 
-SELECT g.type FROM genre g, film f WHERE g.id = f.idGenre GROUP BY g.type, g.id HAVING g.id = (SELECT f.idGenre FROM film f WHERE f.idRealisateur = (SELECT r.idRealisateur FROM realisateur r WHERE r.nomR = 'Scorcesse' AND r.prenomR = 'Martin'));
+ORDER BY p.prenom;
