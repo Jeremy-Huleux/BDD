@@ -1,0 +1,12 @@
+TP5
+
+ON CONSIDERE TOUJOURS QU'ON UTILISE "USE films;" CDLT
+EXERCICE 1
+1.
+SELECT count(*) FROM film;
+2.
+SELECT MIN(annee), MAX(annee) FROM film;
+3.
+SELECT f.titre, r.nomR, r.prenomR, MIN(f.annee) FROM film f, realisateur r
+WHERE f.idRealisateur = r.idRealisateur AND r.paysR = 'FR';
+4.
