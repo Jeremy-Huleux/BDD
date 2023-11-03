@@ -10,3 +10,15 @@ SELECT MIN(annee), MAX(annee) FROM film;
 SELECT f.titre, r.nomR, r.prenomR, MIN(f.annee) FROM film f, realisateur r
 WHERE f.idRealisateur = r.idRealisateur AND r.paysR = 'FR';
 4.
+SELECT count(f.id) FROM film f
+WHERE f.id = (SELECT j.idActeur FROM joue j, personne p
+              WHERE j.idActeur=p.id AND p.prenom = 'Pecas' AND p.nom = 'Max')
+AND f.annee >= 1980;
+5.
+SELECT count(g.id) FROM genre g;
+6.
+SELECT MIN(salaire), MAX(salaire), AVG(salaire) FROM joue;
+7.
+SELECT COUNT(f.id) FROM film f, realisateur r
+WHERE f.id = r.idRealisateur AND r.paysR = 'USA';
+8.
